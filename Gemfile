@@ -37,6 +37,7 @@ gem 'bootstrap-sass', '~> 3.3.4'
 gem 'pg'
 gem 'faker'
 gem 'faraday'
+gem 'yelp'
 
 
 # Use ActiveModel has_secure_password
