@@ -23,6 +23,22 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+
+gem "select2-rails"
+gem 'ranked-model'
+gem 'jquery-ui-rails'
+gem 'acts-as-taggable-on'
+gem 'omniauth-facebook'
+gem 'gravtastic'
+gem "paperclip"
+gem 'devise'
+gem 'kaminari'
+gem 'bootstrap-sass', '~> 3.3.4'
+gem 'pg'
+gem 'faker'
+gem 'faraday'
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
