@@ -18,17 +18,40 @@ namespace :dev do
 
     task :get_yelp => :environment do
 
-        params = {  }
+        
+        Restaurant.destroy_all
+        @mrt = Mrt.first(10)
+        @category=Category.all
 
-        #@mrt = Mrt.all
-        coordinates = {latitude: 25.030009, longitude: 121.472389}
-        #@mrt.each do |m|
-            #coordiantes = {latitude: @mrt.latitude, longitude: @mrt.longitude}
-            @shops = Yelp.client.search_by_coordinates(coordinates, params)
+        #coordinates = {latitude: 25.030009, longitude: 121.472389}
+        @mrt.each do |m|
             
-            @shops.businesses.each do |s|
-                shops = Restaurant.create!(:name => s.name)
+            coordinates = {latitude: m.latitude, longitude: m.longitude}
+            
+            @category.each do |c|
+                params = {category_filter: c.name}
+                @shops = Yelp.client.search_by_coordinates(coordinates, params)
+
+                puts @shops.businesses[6]
+                @shops.businesses.each_with_index do |s, index|
+
+                    shop = Restaurant.new
+                    shop.name = s.name
+                    shop.tel = s.phone if s.try(:phone) != nil
+                    shop.category_id = c.id
+                    shop.mrt_id = m.id
+                    shop.address = s.location.address.join("")
+
+
+                    # shops = Restaurant.new(:name => s.name,:tel => s.phone, :category_id =>c, :mrt_id => m, :address => s.location.address.join(""))
+                    puts index
+                    puts shop.inspect
+                    shop.save!
+                    puts "created Restaurant"
+                end
+                puts "CATEGORY DONE"
             end
-        #end
+            puts "MRT DONE"
+        end
     end
 end

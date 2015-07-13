@@ -1,4 +1,4 @@
 class Restaurant < ActiveRecord::Base
-  has_one :category
-  has_one :mrt
+  belongs_to :category
+  belongs_to :mrt
 end

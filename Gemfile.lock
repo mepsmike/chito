@@ -238,10 +238,4 @@ DEPENDENCIES
   turbolinks
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
-<<<<<<< HEAD
   yelp
-=======
-
-BUNDLED WITH
-   1.10.3
->>>>>>> a3b711017e2d168e2be730e00d66678872a8fb0c
