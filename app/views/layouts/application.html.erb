@@ -7,9 +7,21 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="container">
-<%= yield %>
-</div>
+  <div class="container">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+
+      <% if current_user %>
+        Hi, <%= current_user.name %>
+        <%= link_to "登出", auth_signout_path, :method => :delete %></a>
+      <% else %>
+         <%= link_to "Facebook 登入", "/auth/facebook" %></a>
+      <% end %>
+
+    <%= yield %>
+
+  </div>
 
 </body>
 </html>
