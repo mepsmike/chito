@@ -5,11 +5,11 @@ namespace :dev do
         conn = Faraday.new(:url => 'https://raw.githubusercontent.com' )
         res = conn.get '/repeat/taipei-metro-stations/master/taipei.json'
         data = JSON.parse( res.body )
-    
 
-        
+
+
         data["features"].each do |u|
-       
+
 
          mrt = Mrt.create!( :name => u["properties"]["站名"], :address => u["properties"]["地址"],:line=> u["properties"]["線名"],:latitude => u["properties"]["緯度"],:longitude => u["properties"]["經度"] )
          puts "Create Mrt_station"
@@ -18,18 +18,18 @@ namespace :dev do
 
     task :get_yelp => :environment do
 
-        
+
         Restaurant.destroy_all
-        @mrt = Mrt.first(10)
-        @category=Category.all
+        @mrt = Mrt.find(95,96)
+        @category=Category.first(2)
 
         #coordinates = {latitude: 25.030009, longitude: 121.472389}
         @mrt.each do |m|
-            
+
             coordinates = {latitude: m.latitude, longitude: m.longitude}
-            
+
             @category.each do |c|
-                params = {category_filter: c.name}
+                params = {category_filter: c.name, limit: 1}
                 @shops = Yelp.client.search_by_coordinates(coordinates, params)
 
                 puts @shops.businesses[6]
@@ -37,10 +37,14 @@ namespace :dev do
 
                     shop = Restaurant.new
                     shop.name = s.name
-                    shop.tel = s.phone if s.try(:phone) != nil
+                    shop.tel = s.phone.sub!"+886","0" if s.try(:phone) != nil
+                    shop.tel.insert(2,"-")
+                    shop.tel.insert(7,"-")
                     shop.category_id = c.id
                     shop.mrt_id = m.id
-                    shop.address = s.location.address.join("")
+                    add = s.location.display_address
+                    add.slice!(2)
+                    shop.address = add.join(" ")
 
 
                     # shops = Restaurant.new(:name => s.name,:tel => s.phone, :category_id =>c, :mrt_id => m, :address => s.location.address.join(""))

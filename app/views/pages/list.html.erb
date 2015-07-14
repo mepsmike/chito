@@ -3,14 +3,17 @@
 
 <table class="table table-hover table-respondsive">
   <tr>
+    <th>index</th>
     <th> 站名 </th>
     <th> 線名 </th>
     <th> 經度 </th>
     <th> 緯度 </th>
     <th> 地址 </th>
   </tr>
-  <% Mrt.all.each do |m|%>
+  <% Mrt.all.each_with_index do |m,i|%>
   <tr>
+
+    <td><%= i+1 %></td>
     <td><%= m.name %></td>
     <td><%= m.line %></td>
     <td><%= m.latitude %></td>

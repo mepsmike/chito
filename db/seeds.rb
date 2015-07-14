@@ -4,6 +4,7 @@
 
 	name_list.each do |n|
 		Category.create(:name=>n)
+    puts"Category created"
 	end
 
 
