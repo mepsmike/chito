@@ -12,7 +12,12 @@
     <p class="alert"><%= alert %></p>
 
 
-       <%= link_to "Facebook 登入", "/auth/facebook" %></a>
+      <% if current_user %>
+        Hi, <%= current_user.name %>
+        <%= link_to "登出", auth_signout_path, :method => :delete %></a>
+      <% else %>
+         <%= link_to "Facebook 登入", "/auth/facebook" %></a>
+      <% end %>
 
     <%= yield %>
 

@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+
+
   def self.from_omniauth(auth_hash)
     user = where( :fb_uid => auth_hash[:uid] ).first_or_initialize
     user.name = auth_hash[:info][:name]
