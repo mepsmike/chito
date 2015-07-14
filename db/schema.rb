@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150713123257) do
+ActiveRecord::Schema.define(version: 20150714072101) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -43,6 +43,19 @@ ActiveRecord::Schema.define(version: 20150713123257) do
     t.float    "mrt_longitude"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "email"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "fb_uid"
+    t.string   "image"
+    t.string   "name"
+    t.string   "fb_token"
+    t.datetime "fb_expires_at"
   end
 
 end
