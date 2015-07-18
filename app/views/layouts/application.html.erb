@@ -24,12 +24,13 @@
             <span class="icon icon-bar"></span>
             <span class="icon icon-bar"></span>
           </button>
-          <%= link_to image_tag("LOGO.png", :size => "100x80"), :url=>"/",:class => "navbar-brand" %>
+          <%= link_to image_tag("LOGO.png", :size => "100x80"),"/", :class => "navbar-brand" %>
 
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right text-uppercase">
             <li><a href="#home">頁首</a></li>
+            <li><a href="#divider">特色</a></li>
             <li><a href="#feature">用法</a></li>
             <li><a href="#pricing">店家</a></li>
             <li><a href="#download">下載</a></li>
@@ -51,6 +52,27 @@
     <p class="alert"><%= alert %></p>
     <%= yield %>
 
+
+
+
+
+  <!-- start footer -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+            <a href="https://www.facebook.com/17chito?fref=ts">
+              <i class="fa fa-2x fa-facebook-official"></i>
+            </a>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <p>Copyright © 2015 CHiTO.city  All rights reserved</p>
+        </div>
+      </div>
+    </footer>
+    <!-- end footer -->
 
 
 </body>

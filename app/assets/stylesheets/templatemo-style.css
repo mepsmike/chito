@@ -162,6 +162,13 @@ img
     }
 
 
+.navbar-brand img{
+    marging-top:-10px;
+
+}
+
+
+
 
 .navbar-default .nav li a
     {
@@ -222,7 +229,7 @@ img
     {
         text-align: center;
         padding-top: 80px;
-        padding-bottom: 80px;
+        padding-bottom: 0px;
     }
 #divider .fa
     {
@@ -232,6 +239,20 @@ img
 #divider h3
     {
         font-size: 20px;
+    }
+
+#divider h2
+    {
+     background: #1F1F1E;
+     color: white;
+     line-height: 2em;
+     padding: 2em 0;
+    }
+
+#divider span
+    {
+        color:#FC5918;
+        font-size: 2em;
     }
 /* end divider */
 
@@ -431,7 +452,7 @@ img
 /* start footer */
 footer
     {
-        background: #B5561E;
+        background: #1F1F1E;
         color: #fff;
         font-weight: 400;
         text-align: center;
@@ -439,6 +460,13 @@ footer
         padding-top: 50px;
         padding-bottom:100px;
 
+    }
+
+footer .fa
+    {
+        border-radius: 50%;
+        background: #1F1F1E;
+        color: white;
     }
 /* end footer */
 
