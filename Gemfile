@@ -40,6 +40,7 @@ gem 'faker'
 gem 'faraday'
 gem 'yelp'
 gem 'rspec-rails'
+gem 'geocoder'
 
 
 # Use ActiveModel has_secure_password
