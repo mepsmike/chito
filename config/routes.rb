@@ -10,8 +10,12 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
    root 'pages#list'
-  
+
   scope :path => '/api/v1/', :module => "api_v1", :defaults => { :format => :json }, :as => 'v1' do
+
+    post "/login" => "auth#login"
+    post "/logout" => "auth#logout"
+
     resources :restaurants
   end
 
