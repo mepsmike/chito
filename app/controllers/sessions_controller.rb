@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     session[:user_id] = user.id
 
     flash[:notice]='Login Successfully'
-    redirect_to root_path
+    redirect_to user_profile_path
   end
 
   def failure

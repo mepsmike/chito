@@ -10,44 +10,8 @@
 </head>
 <body>
 
-<!-- start preloader -->
-    <div class="preloader">
-      <div class="sk-spinner sk-spinner-rotating-plane"></div>
-    </div>
-    <!-- end preloader -->
-    <!-- start navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top templatemo-nav" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon icon-bar"></span>
-            <span class="icon icon-bar"></span>
-            <span class="icon icon-bar"></span>
-          </button>
-          <%= link_to image_tag("LOGO.png", :size => "100x80"),"/", :class => "navbar-brand" %>
 
-        </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav navbar-right text-uppercase">
-            <li><a href="#home">頁首</a></li>
-            <li><a href="#divider">特色</a></li>
-            <li><a href="#feature">用法</a></li>
-            <li><a href="#pricing">店家</a></li>
-            <li><a href="#download">下載</a></li>
-            <li><a href="#contact">聯絡我們</a></li>
-            <li>
-              <% if current_user %>
 
-                <%= link_to "登出 #{current_user.name} ", auth_signout_path, :method => :delete, :class => "external" %>
-              <% else %>
-                <%= link_to "Facebook 登入", "/auth/facebook", :class => "external" %>
-              <% end %>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <!-- end navigation -->
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>

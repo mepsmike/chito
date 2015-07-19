@@ -64,7 +64,7 @@ img
        background: rgba(0, 0, 0, 0.4);
        padding-top: 90px;
        padding-bottom: 90px;
-       margin-top: -63px;
+       margin-top: -43px;
     }
 /* over lay */
 
@@ -145,6 +145,8 @@ img
 /* end preloader */
 
 /* start navigation */
+
+
 .navbar-default
     {
         background: #fff;
@@ -163,8 +165,8 @@ img
 
 
 .navbar-brand img{
-    marging-top:-10px;
-
+    position: relative;
+    top: -10px;
 }
 
 

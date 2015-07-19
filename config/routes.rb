@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   delete '/auth/signout', to: 'sessions#destroy'
   get '/list' => 'pages#list'
   get '/restaurant' => 'pages#restaurant'
+  get '/' => "pages#index"
+  get '/user_profile' => "pages#user_profile"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
