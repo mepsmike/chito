@@ -13,13 +13,18 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right text-uppercase">
             <li><a class="external" href="/">回首頁</a></li>
+            <li>    <!-- User Image -->
+              <img style="margin-top:15px; border-radius: 50%;"src="<%= current_user.image %>" alt="">
+            </li>    <!-- User Image -->
             <li>
               <% if current_user %>
                 <%= link_to "登出 #{current_user.name} ", auth_signout_path, :method => :delete, :class => "external" %>
+
               <% else %>
                 <%= link_to "Facebook 登入", "/auth/facebook", :class => "external" %>
               <% end %>
             </li>
+
           </ul>
         </div>
       </div>
@@ -40,9 +45,9 @@
                             <!-- <i class="fa fa-user-md"></i> -->
                             <div class="col-lg-2 col-sm-2 col-sm-offset-5">
                               <div class="follow-ava">
-                                  <img src="img/profile-widget-avatar.jpg" alt="">
+                                  <img src="<%= current_user.image %>" alt="">
                               </div>
-                              <h4>Jenifer Smith</h4>
+                              <h4 style="font-weight: 900;"><%= current_user.name %></h4>
                             </div>
                            </div>
                     </div>
@@ -63,12 +68,12 @@
                                                     最愛
                                             </a>
                                         </li>
-                                        <li>
+                                       <!--  <li>
                                             <a data-toggle="tab" href="#user">
                                                 <i class="fa fa-user"></i>
                                                     帳號
                                             </a>
-                                        </li>
+                                        </li> -->
                                         <!-- <li class="">
                                             <a data-toggle="tab" href="#edit-profile">
                                                 <i class="fa fa-edit"></i>
@@ -202,7 +207,7 @@
                                                 Hello I’m Jenifer Smith, a leading expert in interactive and creative design specializing in the mobile medium. My graduation from Massey University with a Bachelor of Design majoring in visual communication.
                                       </div> -->
 
-                                      <div class="panel">
+                                      <!-- <div class="panel">
 
                                           <div class="row">
                                               <div class="container">
@@ -309,7 +314,8 @@
                                               </form>
                                           </div>
                                       </section>
-                                  </div>
+                                  </div> -->
+
                               </div>
                           </div>
                       </section>

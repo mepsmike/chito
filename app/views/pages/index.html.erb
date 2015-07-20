@@ -25,6 +25,11 @@
             <li><a href="#pricing">店家</a></li>
             <li><a href="#download">下載</a></li>
             <li><a href="#contact">聯絡我們</a></li>
+            <% if current_user %>
+							<li>    <!-- User Image -->
+              <img style="margin-top:15px; border-radius: 50%;"src="<%= current_user.image %>" alt="">
+            	</li>    <!-- User Image -->
+            	<% end %>
             <li>
               <% if current_user %>
                 <%= link_to "#{current_user.name} 的 CHiTO", user_profile_path, :method => :get, :class => "external" %>
@@ -32,6 +37,7 @@
                 <%= link_to "Facebook 登入", "/auth/facebook", :class => "external" %>
               <% end %>
             </li>
+
           </ul>
         </div>
       </div>
