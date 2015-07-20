@@ -10,10 +10,11 @@ class ApiV1::RestaurantsController < ApiController
 
 		#@mrt = Mrt.where(latitude:lat,longitude:long)
 
-		@mrt = Mrt.find(1)
+		#@mrt = Mrt.find(1)
 
-		@restaurants = @mrt.restaurants.where(category_id:2).limit(5).shuffle[0..4]
+		#@restaurants = @mrt.restaurants.where(category_id:2).limit(5).shuffle[0..4]
 
+    @restaurants = Restaurant.all
 	end
 
 

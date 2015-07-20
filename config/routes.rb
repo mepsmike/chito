@@ -13,10 +13,11 @@ Rails.application.routes.draw do
 
   scope :path => '/api/v1/', :module => "api_v1", :defaults => { :format => :json }, :as => 'v1' do
 
+    resources :restaurants
     post "/login" => "auth#login"
     post "/logout" => "auth#logout"
 
-    resources :restaurants
+
   end
 
   # Example of regular route:
