@@ -4,12 +4,15 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback', :to => 'sessions#create'
   get '/auth/failure', to: 'sessions#failure'
   delete '/auth/signout', to: 'sessions#destroy'
-  #get '/list' => 'pages#list'
+  get '/list' => 'pages#list'
+  get '/restaurant' => 'pages#restaurant'
+  get '/' => "pages#index"
+  get '/user_profile' => "pages#user_profile"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'pages#list'
+   root 'pages#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

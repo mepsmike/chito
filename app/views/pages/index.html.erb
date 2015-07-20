@@ -1,0 +1,292 @@
+
+		<!-- start preloader -->
+		<div class="preloader">
+			<div class="sk-spinner sk-spinner-rotating-plane"></div>
+    	 </div>
+		<!-- end preloader -->
+
+		<!-- start navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top templatemo-nav" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon icon-bar"></span>
+            <span class="icon icon-bar"></span>
+            <span class="icon icon-bar"></span>
+          </button>
+          <%= link_to image_tag("LOGO.png", :size => "100x80"),"/", :class => "navbar-brand external" %>
+
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right text-uppercase">
+            <li><a href="#home">頁首</a></li>
+            <li><a href="#divider">特色</a></li>
+            <li><a href="#feature">用法</a></li>
+            <li><a href="#pricing">店家</a></li>
+            <li><a href="#download">下載</a></li>
+            <li><a href="#contact">聯絡我們</a></li>
+            <% if current_user %>
+							<li>    <!-- User Image -->
+              <img style="margin-top:15px; border-radius: 50%;"src="<%= current_user.image %>" alt="">
+            	</li>    <!-- User Image -->
+            	<% end %>
+            <li>
+              <% if current_user %>
+                <%= link_to "#{current_user.name} 的 CHiTO", user_profile_path, :method => :get, :class => "external" %>
+              <% else %>
+                <%= link_to "Facebook 登入", "/auth/facebook", :class => "external" %>
+              <% end %>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- end navigation -->
+
+
+		<!-- start home -->
+		<section id="home">
+			<div class="overlay">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-1"></div>
+						<div class="col-md-10 wow fadeIn" data-wow-delay="0.3s">
+							<h1 class="text-upper">點  <span class="text-upper" style="color:#FC5918;font-size: 2em;">3</span>下</br>   就決定吃什麼！</h1>
+
+							<p class="tm-white">
+								還在用<strong class="high-light">搜尋引擎</strong>找吃的<strong>？ </strong>數以<strong class="high-light">千</strong>計的搜尋結果，怎麼<strong class="high-light">過濾？</strong><br>
+								覺得<strong class="high-light">美食APP</strong>都是些<strong class="high-light">業配文？</strong>種類那麼多，還得<strong class="high-light">慢慢篩選？</strong><br>
+								<span>不過就是想找個地方吃吃喝喝，休息一下，真的不用那麼麻煩！</span>
+
+
+
+							</p>
+							<%= image_tag("software-img.png", :class => "img-responsive", :alt => "home img") %>
+							<p></p>
+							<p></p>
+							<%= link_to "/", :class => "btn btn-warning text-uppercase" do %>
+								<%= content_tag(:i," 馬上下載 CHiTO APP", :class =>'fa fa-apple' )%>
+							<% end %>
+
+
+						</div>
+						<div class="col-md-1"></div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- end home -->
+		<!-- start divider -->
+		<section id="divider">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 wow fadeInUp templatemo-box" data-wow-delay="0.3s">
+						<i class="fa fa-search"></i>
+						<h3 class="text-uppercase">不需要搜尋</h3>
+						<p>還站在路邊，用手機克難的「輸入關鍵字」、「滑上滑下」的找美食？<br>你真的可以不必再這麼做了！</p>
+					</div>
+					<div class="col-md-4 wow fadeInUp templatemo-box" data-wow-delay="0.3s">
+						<i class="fa fa-filter"></i>
+						<h3 class="text-uppercase">不需要篩選</h3>
+						<p>要找吃的之前，還得先搞清楚類型、價格、區域、服務品質、網友評論、＠X＃＄？<br>吃頓飯而已，不是腦筋急轉彎，到底有完沒完？</p>
+					</div>
+					<div class="col-md-4 wow fadeInUp templatemo-box" data-wow-delay="0.3s">
+						<i class="fa fa-ban"></i>
+						<h3 class="text-uppercase">不需要白跑</h3>
+						<p>
+							好不容易過了重重關卡，終於到了店門口，what the.... 沒開？！、要排1小時？！、.....」。其實單純一個電話號碼，就能避免這種無言的痛。
+						</p>
+					</div>
+				</div>
+			</div>
+			<br>
+			<br>
+			<h3 class="text-uppercase">我們也都曾體會過，</h3>
+			<h2>所以<br><span class="text-upper">CHiTO</span><br>誕生了</h2>
+		</section>
+		<!-- end divider -->
+
+		<!-- start feature -->
+		<section class="feature" id="feature">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 wow fadeInLeft" data-wow-delay="0.6s">
+						<h2 class="text-uppercase">第1步：點一個「心情」</h2>
+						<!-- <p>現在想吃的是什麼，就照著你的心情走！</p> -->
+						<p><span><i class="fa fa-2x fa-heart"></i></span>想吃什麼，看心情就對了！最熱門，最簡單的美食店家都幫你準備好了，只管告訴CHiTO你想的是什麼，剩下的CHiTO幫你搞定！</p>
+					</div>
+					<div class="col-md-6 wow fadeInRight" data-wow-delay="0.6s">
+						<%= image_tag("software-img.png", :class => "img-responsive", :alt => "feature img") %>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- end feature -->
+
+		<!-- start feature1 -->
+		<section class="feature1">
+			<div class="container">
+				<div class="row">
+
+					<div class="col-md-6 col-md-push-6 wow fadeInUp" data-wow-delay="0.6s">
+						<h2 class="text-uppercase">第2步：挑一個「心儀」</h2>
+						<!-- <p>清楚的資訊，</p> -->
+						<p><span><i class="fa fa-2x fa-location-arrow"></i></span>簡單明瞭的店家資訊，距離、位置，一目了然，挑一個最「中意」的，就是這麼簡單！</p>
+
+					</div>
+
+					<div class="col-md-6 col-md-pull-6 wow fadeInUp" data-wow-delay="0.6s">
+						<%= image_tag("software-img.png", :class => "img-responsive", :alt => "home img") %>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- end feature1 -->
+
+		<!-- start feature -->
+		<section class="feature">
+			<div class="container">
+				<div class="row">
+
+					<div class="col-md-6 wow fadeInLeft" data-wow-delay="0.6s">
+						<h2 class="text-uppercase">第3步：懂你的「心急」</h2>
+						<!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> -->
+						<p><i class="fa fa-2x fa-phone"></i>餐廳就在一「鍵」之遙，一鍵撥號讓你馬上訂位！</p>
+
+						<p><i class="fa fa-2x fa-map-marker"></i>CHiTO帶著你走，連走路都能導航！</p>
+					</div>
+					<div class="col-md-6 wow fadeInRight" data-wow-delay="0.6s">
+						<%= image_tag("software-img.png", :class => "img-responsive", :alt => "feature img") %>
+					</div>
+
+				</div>
+			</div>
+		</section>
+		<!-- end feature -->
+
+		<!-- start pricing -->
+		<section id="pricing">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 wow bounceIn">
+						<h2 class="text-uppercase">美食版圖</h2>
+					</div>
+					<p>超大版圖，等你征服！</p>
+					<p>店家資訊持續增加中！</p>
+					<div class="col-md-4 wow fadeIn" data-wow-delay="0.6s">
+						<div class="pricing text-uppercase">
+							<div class="pricing-title">
+								<h4>早午餐</h4>
+								<p><%#= @restaurant.count.to_s %></p>
+								<small class="text-lowercase">Brunch</small>
+							</div>
+							<ul>
+								<li>2 GB Space</li>
+								<li>200 GB Bandwidth</li>
+								<li>20 More Themes</li>
+								<li>Lifetime Support</li>
+							</ul>
+							<!-- <button class="btn btn-primary text-uppercase">Sign up</button> -->
+							<div class="pricing-title"></div>
+						</div>
+					</div>
+					<div class="col-md-4 wow fadeIn" data-wow-delay="0.6s">
+						<div class="pricing text-uppercase">
+							<div class="pricing-title">
+								<h4>下午茶</h4>
+
+								<small class="text-lowercase">Cafe</small>
+							</div>
+							<ul>
+								<li>5 GB space</li>
+								<li>500 GB Bandwidth</li>
+								<li>50 More Themes</li>
+								<li>Lifetime Support</li>
+							</ul>
+
+							<div class="pricing-title"></div>
+						</div>
+					</div>
+					<div class="col-md-4 wow fadeIn" data-wow-delay="0.6s">
+						<div class="pricing text-uppercase">
+							<div class="pricing-title">
+								<h4>晚餐</h4>
+
+								<small class="text-lowercase">Dinner</small>
+							</div>
+							<ul>
+								<li>10 GB space</li>
+								<li>1,000 GB bandwidth</li>
+								<li>100 more themes</li>
+								<li>Lifetime Support</li>
+							</ul>
+
+							<div class="pricing-title"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- end pricing -->
+
+		<!-- start download -->
+		<section id="download">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 wow fadeInLeft" data-wow-delay="0.6s">
+						<h2 class="text-uppercase">邀請你一同體驗CHiTO</h2>
+						<p>如果你也和我們一樣，想要更簡單、直覺的找到喜歡的美食，CHiTO一定能帶給你不同的體驗，我們誠摯的邀請您，趕快下載CHiTO APP，一同感受這樣的新體驗！</p>
+						<button class="btn btn-warning text-uppercase"><i class="fa fa-apple"></i> 下載 CHiTO</button>
+					</div>
+					<div class="col-md-6 wow fadeInRight" data-wow-delay="0.6s">
+						<%= image_tag("software-img.png", :class => "img-responsive", :alt => "home img") %>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- end download -->
+
+		<!-- start contact -->
+		<section id="contact">
+			<div class="overlay">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+							<h2 class="text-uppercase">CHiTO 我有話要說</h2>
+							<p>為了能夠打造出更符合用戶需求的產品，CHiTO歡迎各路好朋友們，提供各種意見與指教！我們也歡迎任何有關CHiTO的問題，想知道些什麼，儘管發問吧！</p>
+							<address>
+								<p><i class="fa fa-map-marker"></i>1234 Street Name, City Name, United States</p>
+								<p><i class="fa fa-phone"></i> 0992 234234 / 0234 234234</p>
+								<p><i class="fa fa-envelope-o"></i> hello@yoursite.com</p>
+							</address>
+						</div>
+						<div class="col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+						<!-- form_for -->
+							<div class="contact-form">
+								<form action="#" method="post">
+									<div class="col-md-6">
+										<input type="text" class="form-control" placeholder="Name">
+									</div>
+									<div class="col-md-6">
+										<input type="email" class="form-control" placeholder="Email">
+									</div>
+									<div class="col-md-12">
+										<input type="text" class="form-control" placeholder="Subject">
+									</div>
+									<div class="col-md-12">
+										<textarea class="form-control" placeholder="Message" rows="4"></textarea>
+									</div>
+									<div class="col-md-8">
+										<input id="send" type="submit" class="form-control text-uppercase" value="Send">
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- end contact -->
+
+
