@@ -20,7 +20,7 @@ namespace :dev do
 
 
         Restaurant.destroy_all
-        @mrt = Mrt.find(95,96)
+        @mrt = Mrt.find(1,2)
         @category=Category.first(2)
 
         #coordinates = {latitude: 25.030009, longitude: 121.472389}
