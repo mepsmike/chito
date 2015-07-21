@@ -35,7 +35,7 @@ gem 'devise'
 gem 'kaminari'
 gem 'bootstrap-sass', '~> 3.3.5'
 
-gem 'pg'
+
 gem 'faker'
 gem 'faraday'
 gem 'yelp'
