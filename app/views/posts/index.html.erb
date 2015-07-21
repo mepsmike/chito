@@ -1,0 +1,20 @@
+<div class="container">
+  <table class="table table-responsive">
+    <tr>
+      <th>No.</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Title</th>
+      <th>Content</th>
+    </tr>
+    <% @posts.each_with_index do |p,i| %>
+    <tr>
+      <td><%= i+1 %></td>
+      <td><%= p.name %></td>
+      <td><%= p.email %></td>
+      <td><%= p.title %></td>
+      <td><%= p.content %></td>
+    </tr>
+    <% end %>
+  </table>
+</div>
