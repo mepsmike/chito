@@ -1,0 +1,16 @@
+<div class="row">
+  <table class="table table-responsive table-hover">
+    <tr>
+      <th>餐廳名稱</th>
+      <th>餐廳地址</th>
+      <th>餐廳電話</th>
+    </tr>
+  <% @restaurant.each do |r|%>
+    <tr>
+      <td><%= r.name %></td>
+      <td><%= r.address %></td>
+      <td><%= r.tel %></td>
+    </tr>
+    <% end %>
+  </table>
+  </div>

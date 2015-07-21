@@ -2,26 +2,42 @@
 <html>
 <head>
   <title>Chito</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,700,800' rel='stylesheet' type='text/css'>
 </head>
 <body>
-  <div class="container">
+
+
+
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-
-
-      <% if current_user %>
-        Hi, <%= current_user.name %>
-        <%= link_to "登出", auth_signout_path, :method => :delete %></a>
-      <% else %>
-         <%= link_to "Facebook 登入", "/auth/facebook" %></a>
-      <% end %>
-
     <%= yield %>
 
-  </div>
+
+
+
+
+  <!-- start footer -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+            <a href="https://www.facebook.com/17chito?fref=ts">
+              <i class="fa fa-2x fa-facebook-official"></i>
+            </a>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <p>Copyright © 2015 CHiTO.city  All rights reserved</p>
+        </div>
+      </div>
+    </footer>
+    <!-- end footer -->
+
 
 </body>
 </html>
