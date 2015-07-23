@@ -16,12 +16,26 @@ namespace :dev do
          end
     end
 
+    task :post => :environment do
+        Post.delete_all
+        puts"creating fake POST data"
+
+        50.times do |p|
+            p = Post.create(:name => Faker::Name.name, :email=>Faker::Internet.free_email, :title=> Faker::Team.name ,:content=>Faker::Lorem.paragraph(2))
+            p.save
+            puts"#{p.name} created"
+        end
+    end
+
     task :get_yelp => :environment do
 
 
-        Restaurant.destroy_all
-        @mrt = Mrt.find(1,2)
-        @category=Category.first(2)
+        # Restaurant.destroy_all
+        @mrt = Mrt.all
+        @category = Category.all
+
+successful_shops = []
+failed_shops = []
 
         #coordinates = {latitude: 25.030009, longitude: 121.472389}
         @mrt.each do |m|
@@ -29,33 +43,123 @@ namespace :dev do
             coordinates = {latitude: m.latitude, longitude: m.longitude}
 
             @category.each do |c|
-                params = {category_filter: c.name, limit: 1}
+                params = {category_filter: c.name,}
                 @shops = Yelp.client.search_by_coordinates(coordinates, params)
 
-                puts @shops.businesses[6]
+
                 @shops.businesses.each_with_index do |s, index|
 
                     shop = Restaurant.new
                     shop.name = s.name
-                    shop.tel = s.phone.sub!"+886","0" if s.try(:phone) != nil
-                    shop.tel.insert(2,"-")
-                    shop.tel.insert(7,"-")
-                    shop.category_id = c.id
-                    shop.mrt_id = m.id
-                    add = s.location.display_address
-                    add.slice!(2)
-                    shop.address = add.join(" ")
+                    shop.yelp_restaurant_id = s.id
+                  if Restaurant.find_by_yelp_restaurant_id([s.id]).present? == false
+                    if s.try(:phone).present?
+                        shop.tel = s.phone.sub!"+886","0"
+                        shop.tel.insert(2,"-")
+                        shop.tel.insert(7,"-")
+                    end
 
+
+
+                    shop.category_id = c.id
+                    shop.mrts << m
+
+
+                    locate = s.location.display_address
+
+                    if s.try(:location).present?
+                        add = locate
+                        add.slice!(2)
+                        shop.address = add.join(" ")
+                    end
 
                     # shops = Restaurant.new(:name => s.name,:tel => s.phone, :category_id =>c, :mrt_id => m, :address => s.location.address.join(""))
-                    puts index
-                    puts shop.inspect
-                    shop.save!
-                    puts "created Restaurant"
+
+                    if shop.save
+                        successful_shops << shop
+                    else
+                        failed_shops << shop
+                    end
+                    puts "created Restaurant #{s.name} #{s.id}"
+                  end #if yelp_restaurant_id_present?
+
                 end
                 puts "CATEGORY DONE"
             end
             puts "MRT DONE"
         end
-    end
+
+        puts "Totoal success: #{successful_shops.count}"
+        puts "Totoal failed: #{failed_shops.count}"
+        failed_shops.each do |s|
+          puts s.inspect
+          puts s.errors.full_messages
+          puts "----\n"
+        end
+
+    end  #get_yelp
+
+    task :get_yelp_1 => :environment do
+
+
+
+        Restaurant.destroy_all
+        @mrt = Mrt.first(2)
+        @category=Category.first(2)
+
+        #coordinates = {latitude: 25.030009, longitude: 121.472389}
+        @mrt.each do |m|
+
+
+            coordinates = {latitude: m.latitude, longitude: m.longitude}
+
+            @category.each do |c|
+                params = {category_filter: c.name, limit:2}
+                @shops = Yelp.client.search_by_coordinates(coordinates, params)
+
+
+                @shops.businesses.each_with_index do |s, index|
+
+                    shop = Restaurant.new
+                    shop.name = s.name
+                    shop.yelp_restaurant_id = s.id
+                  if Restaurant.find_by_yelp_restaurant_id([s.id]).present? == false
+                    if s.try(:phone) != nil
+                        shop.tel = s.phone.sub!"+886","0"
+                        shop.tel.insert(2,"-")
+                        shop.tel.insert(7,"-")
+                    end
+
+                    shop.category_id = c.id
+                    # shop.yelp_restaurant_id = s.id
+
+
+
+                    shop.category_id = c.id
+                    shop.mrts << m
+
+                    locate = s.location.display_address
+
+                    if s.try(:location) != nil
+                        add = locate
+                        add.slice!(2)
+                        shop.address = add.join(" ")
+                    end
+
+
+                    # shops = Restaurant.new(:name => s.name,:tel => s.phone, :category_id =>c, :mrt_id => m, :address => s.location.address.join(""))
+
+                    shop.save!
+
+                    puts "created Restaurant #{s.name}" + "#{s.id}"
+                    end #if yelp_restaurant_id present
+
+                end
+                puts "CATEGORY DONE"
+            end
+
+            puts "MRT DONE"
+        end
+    end  #get_yelp_1
+
 end

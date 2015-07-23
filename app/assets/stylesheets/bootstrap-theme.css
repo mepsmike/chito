@@ -258,7 +258,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: Lato;
+  font-family: Helvetica;
   font-size: 14px;
   line-height: 1.428571429;
   color: #2b2b2b;
@@ -393,7 +393,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: Lato;
+  font-family: Noto Sans CJK TC;
   font-weight: 400;
   line-height: 1.1;
 }
@@ -3676,7 +3676,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .navbar-toggle .icon-bar + .icon-bar {
   margin-top: 4px;
 }
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
   .navbar-toggle {
     display: none;
   }

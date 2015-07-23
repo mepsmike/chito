@@ -4,15 +4,18 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback', :to => 'sessions#create'
   get '/auth/failure', to: 'sessions#failure'
   delete '/auth/signout', to: 'sessions#destroy'
+
   get '/list' => 'pages#list'
   get '/restaurant' => 'pages#restaurant'
   get '/' => "pages#index"
-  get '/user_profile' => "pages#user_profile"
+  get '/user' => "users#show"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
    root 'pages#index'
+   resources :posts
+
 
   scope :path => '/api/v1/', :module => "api_v1", :defaults => { :format => :json }, :as => 'v1' do
 
@@ -22,6 +25,8 @@ Rails.application.routes.draw do
     post "/login" => "auth#login"
     #post "/logout" => "auth#logout"
 
+
+     #####resources :restaurants
 
   end
 

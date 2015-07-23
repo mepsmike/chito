@@ -11,52 +11,77 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150719130339) do
+ActiveRecord::Schema.define(version: 20150723094017) do
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer  "restaurant_id", limit: 4
+    t.integer  "user_id",       limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "mrt_restaurantships", force: :cascade do |t|
+    t.integer  "mrt_id",        limit: 4
+    t.integer  "restaurant_id", limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "mrts", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "line_no"
-    t.string   "line"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text     "address"
+    t.string   "name",       limit: 255
+    t.integer  "line_no",    limit: 4
+    t.string   "line",       limit: 255
+    t.float    "latitude",   limit: 24
+    t.float    "longitude",  limit: 24
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.text     "address",    limit: 65535
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "email",      limit: 255
+    t.string   "title",      limit: 255
+    t.text     "content",    limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "restaurants", force: :cascade do |t|
-    t.string   "name"
-    t.string   "tel"
-    t.text     "address"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.string   "time"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "category_id"
-    t.integer  "mrt_id"
+    t.string   "name",               limit: 255
+    t.string   "tel",                limit: 255
+    t.text     "address",            limit: 65535
+    t.float    "latitude",           limit: 24
+    t.float    "longitude",          limit: 24
+    t.string   "time",               limit: 255
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.integer  "category_id",        limit: 4
+    t.string   "yelp_restaurant_id", limit: 255
   end
+
+  add_index "restaurants", ["category_id"], name: "index_restaurants_on_category_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-    t.string   "fb_uid"
-    t.string   "image"
-    t.string   "name"
-    t.string   "fb_token"
+    t.string   "email",                limit: 255
+    t.string   "first_name",           limit: 255
+    t.string   "last_name",            limit: 255
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "fb_uid",               limit: 255
+    t.string   "image",                limit: 255
+    t.string   "name",                 limit: 255
+    t.string   "fb_token",             limit: 255
     t.datetime "fb_expires_at"
-    t.string   "authentication_token"
+    t.string   "authentication_token", limit: 255
   end
 
-  add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true
+  add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
 
 end

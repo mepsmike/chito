@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Events", type: :request do
+
   describe "POST /restaurants" do
 
     it "should restaurants list" do

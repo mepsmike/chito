@@ -27,12 +27,12 @@
             <li><a href="#contact">聯絡我們</a></li>
             <% if current_user %>
 							<li>    <!-- User Image -->
-              <img style="margin-top:15px; border-radius: 50%;"src="<%= current_user.image %>" alt="">
+							<%= image_tag current_user.image, :style => "margin-top:15px; border-radius: 50%;" %>
             	</li>    <!-- User Image -->
             	<% end %>
             <li>
               <% if current_user %>
-                <%= link_to "#{current_user.name} 的 CHiTO", user_profile_path, :method => :get, :class => "external" %>
+                <%= link_to "#{current_user.name} 的 CHiTO", user_path, :class => "external" %>
               <% else %>
                 <%= link_to "Facebook 登入", "/auth/facebook", :class => "external" %>
               <% end %>
@@ -52,12 +52,12 @@
 					<div class="row">
 						<div class="col-md-1"></div>
 						<div class="col-md-10 wow fadeIn" data-wow-delay="0.3s">
-							<h1 class="text-upper">點  <span class="text-upper" style="color:#FC5918;font-size: 2em;">3</span>下</br>   就決定吃什麼！</h1>
+							<h1 class="text-upper">點  <span class="text-upper" style="color:#FC5918;font-size: 2em;">3</span>  下</br>   就決定吃什麼！</h1>
 
-							<p class="tm-white">
+							<!-- <p class="tm-white">
 								還在用<strong class="high-light">搜尋引擎</strong>找吃的<strong>？ </strong>數以<strong class="high-light">千</strong>計的搜尋結果，怎麼<strong class="high-light">過濾？</strong><br>
 								覺得<strong class="high-light">美食APP</strong>都是些<strong class="high-light">業配文？</strong>種類那麼多，還得<strong class="high-light">慢慢篩選？</strong><br>
-								<span>不過就是想找個地方吃吃喝喝，休息一下，真的不用那麼麻煩！</span>
+								<span>不過就是想找個地方吃吃喝喝，休息一下，真的不用那麼麻煩！</span> -->
 
 
 
@@ -66,7 +66,7 @@
 							<p></p>
 							<p></p>
 							<%= link_to "/", :class => "btn btn-warning text-uppercase" do %>
-								<%= content_tag(:i," 馬上下載 CHiTO APP", :class =>'fa fa-apple' )%>
+								<i class="fa fa-apple">馬上下載 CHiTO APP</i>
 							<% end %>
 
 
@@ -236,7 +236,7 @@
 				<div class="row">
 					<div class="col-md-6 wow fadeInLeft" data-wow-delay="0.6s">
 						<h2 class="text-uppercase">邀請你一同體驗CHiTO</h2>
-						<p>如果你也和我們一樣，想要更簡單、直覺的找到喜歡的美食，CHiTO一定能帶給你不同的體驗，我們誠摯的邀請您，趕快下載CHiTO APP，一同感受這樣的新體驗！</p>
+						<p>如果你也和我們一樣，想要更簡單、直覺的找到喜歡的美食，CHiTO一定能帶給你不同的體驗，趕快下載CHiTO APP，一同感受這樣的新體驗！</p>
 						<button class="btn btn-warning text-uppercase"><i class="fa fa-apple"></i> 下載 CHiTO</button>
 					</div>
 					<div class="col-md-6 wow fadeInRight" data-wow-delay="0.6s">

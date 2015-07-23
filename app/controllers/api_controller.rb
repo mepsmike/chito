@@ -11,4 +11,19 @@ class ApiController < ActionController::Base
 
   end
 
+  def add_to_favorite
+    @restaurant = Restaurant.find(params[:id])
+    @user = current_user
+    @favorite = Favorite.new
+    @favorite = @user.favorite.new(params_favorite)
+    @favorite.save
+  end
+
+  private
+
+
+  def params_favorite
+    params.require(:favorites).permit(:user_id, :restaurant_id)
+  end
+
 end

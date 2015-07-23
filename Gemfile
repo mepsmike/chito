@@ -35,13 +35,16 @@ gem 'devise'
 gem 'kaminari'
 gem 'bootstrap-sass', '~> 3.3.5'
 
-gem 'pg'
+
 gem 'faker'
 gem 'faraday'
 gem 'yelp'
 gem 'rspec-rails'
 gem 'geocoder'
 
+gem 'capistrano-rails', :group => :development
+gem 'capistrano-passenger', :group => :development
+gem 'mysql2'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
