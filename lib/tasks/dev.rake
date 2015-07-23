@@ -58,10 +58,10 @@ namespace :dev do
                     shop.category_id = c.id
                     shop.mrt_id = m.id
 
-                    location = location.display_address
+                    locate = location.display_address
 
                     if s.try(:location) != nil
-                        add = s.location.display_address
+                        add = s.locate
                         add.slice!(2)
                         shop.address = add.join(" ")
                     end
