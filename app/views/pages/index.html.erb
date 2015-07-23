@@ -27,12 +27,12 @@
             <li><a href="#contact">聯絡我們</a></li>
             <% if current_user %>
 							<li>    <!-- User Image -->
-              <img style="margin-top:15px; border-radius: 50%;"src="<%= current_user.image %>" alt="">
+							<%= image_tag current_user.image, :style => "margin-top:15px; border-radius: 50%;" %>
             	</li>    <!-- User Image -->
             	<% end %>
             <li>
               <% if current_user %>
-                <%= link_to "#{current_user.name} 的 CHiTO", user_profile_path, :method => :get, :class => "external" %>
+                <%= link_to "#{current_user.name} 的 CHiTO", user_path, :class => "external" %>
               <% else %>
                 <%= link_to "Facebook 登入", "/auth/facebook", :class => "external" %>
               <% end %>
@@ -66,7 +66,7 @@
 							<p></p>
 							<p></p>
 							<%= link_to "/", :class => "btn btn-warning text-uppercase" do %>
-								<%= content_tag(:i," 馬上下載 CHiTO APP", :class =>'fa fa-apple' )%>
+								<i class="fa fa-apple">馬上下載 CHiTO APP</i>
 							<% end %>
 
 

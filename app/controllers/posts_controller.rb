@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-
+  # TODO: authorization for index action
 
   def index
     @posts = Post.all

@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  # TODO: validations
+  validates_presence_of :fb_token, :email
   before_create :generate_authentication_token
 
   def generate_authentication_token

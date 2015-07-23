@@ -92,18 +92,16 @@
                                       <tr>
                                         <th>restaurant</th>
                                         <th>restaurant address</th>
-                                        <th>Mrt</th>
-                                        <th>Mrt address</th>
+
                                       </tr>
                                       <% @restaurant.each do |r| %>
-                                      <% @mrt.each do |m| %>
+
                                       <tr>
                                         <td><%= r.name %></td>
                                         <td><%= r.address %></td>
-                                        <td><%= m.name %></td>
-                                        <td><%= m.address %></td>
+
                                       </tr>
-                                      <% end %>
+
                                       <% end %>
                                     </table>
                                       <!-- <div class="profile-activity">

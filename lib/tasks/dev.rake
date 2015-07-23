@@ -34,6 +34,9 @@ namespace :dev do
         @mrt = Mrt.all
         @category=Category.all
 
+successful_shops = []
+failed_shops = []
+
         #coordinates = {latitude: 25.030009, longitude: 121.472389}
         @mrt.each do |m|
 
@@ -49,18 +52,18 @@ namespace :dev do
                     shop = Restaurant.new
                     shop.name = s.name
 
-                    if s.try(:phone) != nil
+                    if s.try(:phone).present?
                         shop.tel = s.phone.sub!"+886","0"
                         shop.tel.insert(2,"-")
                         shop.tel.insert(7,"-")
                     end
 
-                    shop.category_id = c.id
-                    shop.mrt_id = m.id
+                    shop.category = c
+                    shop.mrt = m
 
                     locate = s.location.display_address
 
-                    if s.try(:location) != nil
+                    if s.try(:location).present?
                         add = locate
                         add.slice!(2)
                         shop.address = add.join(" ")
@@ -68,7 +71,11 @@ namespace :dev do
 
                     # shops = Restaurant.new(:name => s.name,:tel => s.phone, :category_id =>c, :mrt_id => m, :address => s.location.address.join(""))
 
-                    shop.save!
+                    if shop.save
+                        successful_shops << shop
+                    else
+                        failed_shops << shop
+                    end
 
                     puts "created Restaurant"
                 end
@@ -76,6 +83,15 @@ namespace :dev do
             end
             puts "MRT DONE"
         end
+
+        puts "Totoal success: #{successful_shops.count}"
+        puts "Totoal failed: #{failed_shops.count}"
+        failed_shops.each do |s|
+          puts s.inspect
+          puts s.errors.full_messages
+          puts "----\n"
+        end
+
     end  #get_yelp
 
     task :get_yelp_1 => :environment do

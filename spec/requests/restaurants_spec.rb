@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Events", type: :request do
+
   describe "GET /restaurants" do
     it "should restaurants list" do
       Restaurant.create!( :name => "Foooooo",:address =>"add",:tel =>"tel" )
