@@ -16,7 +16,9 @@ Rails.application.routes.draw do
 
   scope :path => '/api/v1/', :module => "api_v1", :defaults => { :format => :json }, :as => 'v1' do
 
-    resources :restaurants
+    #resources :restaurants
+    post "/restaurants" => "restaurants#index"
+    get "/restaurants" => "restaurants#index"
     post "/login" => "auth#login"
     post "/logout" => "auth#logout"
 
