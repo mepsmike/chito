@@ -1,7 +1,6 @@
 class ApiV1::AuthController < ApiController
 
-  before_action :authenticate_user!, :except => [:login]
-
+  #before_action :authenticate_user!, :except => [:login]
   def login
     success = false
 
@@ -33,11 +32,12 @@ class ApiV1::AuthController < ApiController
     end
   end
 
-  def logout
-    current_user.generate_authentication_token
-    current_user.save!
 
-    render :json => { :message => "Ok"}
-  end
+  #def logout
+   # current_user.generate_authentication_token
+   # current_user.save!
+
+   # render :json => { :message => "Ok"}
+  #end
 
 end

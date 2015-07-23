@@ -62,5 +62,23 @@ RSpec.describe "Auth", type: :request do
 
   end
 
+  # describe "logout" do
+  #   it "should auth error if no auth_token" do
+  #     post "/api/v1/logout"
 
+  #     expect(response).to have_http_status(401)
+  #   end
+
+  #   it "should expire user auth token" do
+  #     old_auth_token = user.authentication_token
+
+  #     post "/api/v1/logout", :auth_token => old_auth_token
+
+  #     expect(response).to have_http_status(200)
+
+  #     user.reload
+  #     expect( user.authentication_token ).not_to eq(old_auth_token)
+  #   end
+
+  # end
 end

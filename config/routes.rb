@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     post "/restaurants" => "restaurants#index"
     get "/restaurants" => "restaurants#index"
     post "/login" => "auth#login"
-    post "/logout" => "auth#logout"
+    #post "/logout" => "auth#logout"
 
 
   end
