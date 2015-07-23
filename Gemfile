@@ -45,7 +45,7 @@ gem 'guard'
 
 gem 'capistrano-rails', :group => :development
 gem 'capistrano-passenger', :group => :development
-gem 'mysql2', :group => :production
+gem 'mysql2'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

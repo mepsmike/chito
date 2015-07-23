@@ -31,8 +31,8 @@ namespace :dev do
 
 
         Restaurant.destroy_all
-        @mrt = Mrt.find(1,2)
-        @category=Category.first(2)
+        @mrt = Mrt.all
+        @category=Category.all
 
         #coordinates = {latitude: 25.030009, longitude: 121.472389}
         @mrt.each do |m|
@@ -40,10 +40,10 @@ namespace :dev do
             coordinates = {latitude: m.latitude, longitude: m.longitude}
 
             @category.each do |c|
-                params = {category_filter: c.name, limit: 1}
+                params = {category_filter: c.name,}
                 @shops = Yelp.client.search_by_coordinates(coordinates, params)
 
-                puts @shops.businesses[6]
+
                 @shops.businesses.each_with_index do |s, index|
 
                     shop = Restaurant.new
@@ -59,9 +59,9 @@ namespace :dev do
 
 
                     # shops = Restaurant.new(:name => s.name,:tel => s.phone, :category_id =>c, :mrt_id => m, :address => s.location.address.join(""))
-                    puts index
-                    puts shop.inspect
+
                     shop.save!
+
                     puts "created Restaurant"
                 end
                 puts "CATEGORY DONE"
