@@ -58,7 +58,7 @@ namespace :dev do
                     shop.category_id = c.id
                     shop.mrt_id = m.id
 
-                    locate = location.display_address
+                    locate = s.location.display_address
 
                     if s.try(:location) != nil
                         add = s.locate
