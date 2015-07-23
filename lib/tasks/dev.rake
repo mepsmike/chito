@@ -30,9 +30,9 @@ namespace :dev do
     task :get_yelp => :environment do
 
 
-        Restaurant.destroy_all
+        # Restaurant.destroy_all
         @mrt = Mrt.all
-        @category=Category.all
+        @category = Category.all
 
 successful_shops = []
 failed_shops = []
@@ -51,15 +51,19 @@ failed_shops = []
 
                     shop = Restaurant.new
                     shop.name = s.name
-
+                    shop.yelp_restaurant_id = s.id
+                  if Restaurant.find_by_yelp_restaurant_id([s.id]).present? == false
                     if s.try(:phone).present?
                         shop.tel = s.phone.sub!"+886","0"
                         shop.tel.insert(2,"-")
                         shop.tel.insert(7,"-")
                     end
 
-                    shop.category = c
-                    shop.mrt = m
+
+
+                    shop.category_id = c.id
+                    shop.mrts << m
+
 
                     locate = s.location.display_address
 
@@ -76,8 +80,9 @@ failed_shops = []
                     else
                         failed_shops << shop
                     end
+                    puts "created Restaurant #{s.name} #{s.id}"
+                  end #if yelp_restaurant_id_present?
 
-                    puts "created Restaurant"
                 end
                 puts "CATEGORY DONE"
             end
@@ -97,12 +102,14 @@ failed_shops = []
     task :get_yelp_1 => :environment do
 
 
+
         Restaurant.destroy_all
         @mrt = Mrt.first(2)
         @category=Category.first(2)
 
         #coordinates = {latitude: 25.030009, longitude: 121.472389}
         @mrt.each do |m|
+
 
             coordinates = {latitude: m.latitude, longitude: m.longitude}
 
@@ -115,7 +122,8 @@ failed_shops = []
 
                     shop = Restaurant.new
                     shop.name = s.name
-
+                    shop.yelp_restaurant_id = s.id
+                  if Restaurant.find_by_yelp_restaurant_id([s.id]).present? == false
                     if s.try(:phone) != nil
                         shop.tel = s.phone.sub!"+886","0"
                         shop.tel.insert(2,"-")
@@ -123,7 +131,12 @@ failed_shops = []
                     end
 
                     shop.category_id = c.id
-                    shop.mrt_id = m.id
+                    # shop.yelp_restaurant_id = s.id
+
+
+
+                    shop.category_id = c.id
+                    shop.mrts << m
 
                     locate = s.location.display_address
 
@@ -133,16 +146,20 @@ failed_shops = []
                         shop.address = add.join(" ")
                     end
 
+
                     # shops = Restaurant.new(:name => s.name,:tel => s.phone, :category_id =>c, :mrt_id => m, :address => s.location.address.join(""))
 
                     shop.save!
 
-                    puts "created Restaurant"
+                    puts "created Restaurant #{s.name}" + "#{s.id}"
+                    end #if yelp_restaurant_id present
+
                 end
                 puts "CATEGORY DONE"
             end
+
             puts "MRT DONE"
         end
-    end  #get_yelp
+    end  #get_yelp_1
 
 end

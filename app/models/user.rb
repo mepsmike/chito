@@ -1,5 +1,9 @@
 class User < ActiveRecord::Base
 
+  has_many :favorites
+  has_many :restaurants, :through => :favorites
+
+
   # TODO: validations
   validates_presence_of :fb_token, :email
   before_create :generate_authentication_token
