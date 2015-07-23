@@ -61,7 +61,7 @@ namespace :dev do
                     locate = s.location.display_address
 
                     if s.try(:location) != nil
-                        add = s.locate
+                        add = locate
                         add.slice!(2)
                         shop.address = add.join(" ")
                     end
@@ -76,5 +76,57 @@ namespace :dev do
             end
             puts "MRT DONE"
         end
-    end
+    end  #get_yelp
+
+    task :get_yelp_1 => :environment do
+
+
+        Restaurant.destroy_all
+        @mrt = Mrt.first(2)
+        @category=Category.first(2)
+
+        #coordinates = {latitude: 25.030009, longitude: 121.472389}
+        @mrt.each do |m|
+
+            coordinates = {latitude: m.latitude, longitude: m.longitude}
+
+            @category.each do |c|
+                params = {category_filter: c.name, limit:2}
+                @shops = Yelp.client.search_by_coordinates(coordinates, params)
+
+
+                @shops.businesses.each_with_index do |s, index|
+
+                    shop = Restaurant.new
+                    shop.name = s.name
+
+                    if s.try(:phone) != nil
+                        shop.tel = s.phone.sub!"+886","0"
+                        shop.tel.insert(2,"-")
+                        shop.tel.insert(7,"-")
+                    end
+
+                    shop.category_id = c.id
+                    shop.mrt_id = m.id
+
+                    locate = s.location.display_address
+
+                    if s.try(:location) != nil
+                        add = locate
+                        add.slice!(2)
+                        shop.address = add.join(" ")
+                    end
+
+                    # shops = Restaurant.new(:name => s.name,:tel => s.phone, :category_id =>c, :mrt_id => m, :address => s.location.address.join(""))
+
+                    shop.save!
+
+                    puts "created Restaurant"
+                end
+                puts "CATEGORY DONE"
+            end
+            puts "MRT DONE"
+        end
+    end  #get_yelp
+
 end
