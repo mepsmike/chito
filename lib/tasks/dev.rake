@@ -48,15 +48,23 @@ namespace :dev do
 
                     shop = Restaurant.new
                     shop.name = s.name
-                    shop.tel = s.phone.sub!"+886","0" if s.try(:phone) != nil
-                    shop.tel.insert(2,"-")
-                    shop.tel.insert(7,"-")
+
+                    if s.try(:phone) != nil
+                        shop.tel = s.phone.sub!"+886","0"
+                        shop.tel.insert(2,"-")
+                        shop.tel.insert(7,"-")
+                    end
+
                     shop.category_id = c.id
                     shop.mrt_id = m.id
-                    add = s.location.display_address
-                    add.slice!(2)
-                    shop.address = add.join(" ")
 
+                    location = location.display_address
+
+                    if s.try(:location) != nil
+                        add = s.location.display_address
+                        add.slice!(2)
+                        shop.address = add.join(" ")
+                    end
 
                     # shops = Restaurant.new(:name => s.name,:tel => s.phone, :category_id =>c, :mrt_id => m, :address => s.location.address.join(""))
 
