@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150723094017) do
+ActiveRecord::Schema.define(version: 20150724020303) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -37,10 +37,10 @@ ActiveRecord::Schema.define(version: 20150723094017) do
     t.string   "name",       limit: 255
     t.integer  "line_no",    limit: 4
     t.string   "line",       limit: 255
-    t.float    "latitude",   limit: 24
-    t.float    "longitude",  limit: 24
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.decimal  "latitude",                 precision: 20, scale: 10
+    t.decimal  "longitude",                precision: 20, scale: 10
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
     t.text     "address",    limit: 65535
   end
 
@@ -57,11 +57,11 @@ ActiveRecord::Schema.define(version: 20150723094017) do
     t.string   "name",               limit: 255
     t.string   "tel",                limit: 255
     t.text     "address",            limit: 65535
-    t.float    "latitude",           limit: 24
-    t.float    "longitude",          limit: 24
+    t.decimal  "latitude",                         precision: 20, scale: 10
+    t.decimal  "longitude",                        precision: 20, scale: 10
     t.string   "time",               limit: 255
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",                                                 null: false
+    t.datetime "updated_at",                                                 null: false
     t.integer  "category_id",        limit: 4
     t.string   "yelp_restaurant_id", limit: 255
   end

@@ -1,10 +1,10 @@
 json.data @restaurants do |res|
 
+json.id res.id
 json.name res.name
 json.tel res.tel
 json.address res.address
-#json.latitude Geocoder.coordinates(res.address)[0]
-#json.longtitude Geocoder.coordinates(res.address)[1]
-
+json.latitude res.latitude
+json.longtitude res.longitude
 
 end
