@@ -1,0 +1,19 @@
+<h1>你的留言</h1>
+
+<table class="table-responsive">
+  <tr>
+    <th>姓名</th>
+    <th>Email</th>
+    <th>主旨</th>
+    <th>內容</th>
+  </tr>
+  <tr>
+    <td><%=@post.name%></td>
+    <td><%=@post.email%></td>
+    <td><%=@post.title%></td>
+    <td><%=@post.content%></td>
+  </tr>
+</table>
+<%= link_to "編輯", post_path(@post), :class => 'form-control text-uppercase' %>
+<%= link_to "取消", root_path, :class => 'form-control text-uppercase' %>
+<%= link_to "確認送出", root_path, :class => 'form-control text-uppercase' %>

@@ -3,6 +3,24 @@ Boxer Template
 http://www.templatemo.com/preview/templatemo_446_boxer
 */
 
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #C9C8C7;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #C9C8C7;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #C9C8C7;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+   color:    #C9C8C7;
+}
+
+
+
+
 body
     {
         background: #fff;
@@ -432,6 +450,7 @@ img
         border-radius: 0px;
         box-shadow: none;
         margin-bottom: 20px;
+        color :#424242;
     }
 
 #contact input
@@ -448,6 +467,34 @@ img
 #contact input[type="submit"]:hover {
     background: #B5561E;
 
+
+}
+
+
+.cancel{
+    line-height: 50px;
+    text-align: center;
+    color:white;
+    background-color: #424242;
+    color: #fff;
+    font-weight: bold;
+    height: 50px;
+    transition: all 0.3s ease;
+}
+
+.cancel:hover{
+    background-color:#101010;
+}
+.cancel a{
+    display: block;
+    padding-top: 18px;
+    color: white;
+    background:#101010;
+}
+
+.cancel a :hover{
+    color:white;
+    text-decoration: none;
 }
 /* end contact */
 

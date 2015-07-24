@@ -263,8 +263,42 @@
 						</div>
 						<div class="col-md-6 wow fadeInUp" data-wow-delay="0.6s">
 						<!-- form_for -->
-							<div class="contact-form">
-								<form action="#" method="post">
+							<div class="contact-form" id="contact_message">
+
+							<%=form_for @post, :url => posts_path(@post),:method => :post , :remote => true, :class=>"form" do |p|%>
+									<div class="col-md-6">
+									  <%= p.text_field :name, :placeholder=>"姓名",:class=>'form-control' ,:required => true %>
+									</div>
+
+									<div class="col-md-6">
+									  <%= p.text_field :email, :placeholder=>"Email",:class=>'form-control',:required => true %>
+									</div>
+
+									<div class="col-md-12">
+									  <%= p.text_field :title, :placeholder=>"主旨",:class=>'form-control' ,:required => true %>
+									</div>
+
+									<div class="col-md-12">
+									  <%= p.text_area :content, :placeholder=>"內容",:class=>'form-control',:required => true %>
+									</div>
+
+									<div class="col-md-8">
+										<%=p.submit "送出", :class => 'form-control text-uppercase' %>
+									</div>
+
+
+									<%= link_to :url => "#", class: "form-control text-uppercase " do %>
+            			 <%= content_tag(:div, "取消",:class=>' col-md-4 cancel') %>
+            			<% end %>
+
+							<%end%>
+
+
+
+
+
+
+								<!-- <form action="#" method="post">
 									<div class="col-md-6">
 										<input type="text" class="form-control" placeholder="Name">
 									</div>
@@ -280,8 +314,10 @@
 									<div class="col-md-8">
 										<input id="send" type="submit" class="form-control text-uppercase" value="Send">
 									</div>
-								</form>
-							</div>
+								</form> -->
+
+							</div> <!-- div class="contact-form -->
+
 						</div>
 					</div>
 				</div>
