@@ -162,4 +162,10 @@ failed_shops = []
         end
     end  #get_yelp_1
 
+
+    task :build => ["tmp:clear", "log:clear", "db:drop", "db:create", "db:migrate"]
+    task :rebuild => [ "dev:build", "db:seed" ]
+    task :rebuild_all => ["dev:build", "db:seed", "dev:get_mrt_station", "get_yelp"]
+
+
 end
