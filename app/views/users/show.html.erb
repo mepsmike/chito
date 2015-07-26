@@ -90,9 +90,9 @@
                                   <div id="favorite" class="tab-pane active">
                                        <!--map-->
                                     <div style='width: 100%;'>
-                                      <div id="map" style='width: 80%; height: 400px;float:left'></div>
+                                      <div id="map" style='width: 100%; height: 400px'></div>
                                       <div>
-                                      <div id="mapinfo" style="width: 20%; float:right">
+                                      <div id="mapinfo" >
 
                                       </div>
                                     </div>
@@ -208,7 +208,7 @@
                                       </div> -->
                                   </div>
                                   <!-- user -->
-                                  <div id="user" class="tab-pane" style="clear:both">
+                                  <div id="user" class="tab-pane" >
                                     <section class="panel">
                                       <!-- <div class="bio-graph-heading">
                                                 Hello I’m Jenifer Smith, a leading expert in interactive and creative design specializing in the mobile medium. My graduation from Massey University with a Bachelor of Design majoring in visual communication.
@@ -343,7 +343,7 @@
 <script>
 
 
-
+      $("#mapinfo").hide();
       handler = Gmaps.build('Google');
       handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
 
@@ -372,6 +372,10 @@
 
 
 
+      google.maps.event.addListener(handler.getMap(), 'center_changed', function() {
+        $("#mapinfo").hide();
+      });
+
       // Add event listener on marker click
       for (var i = 0; i <  markers.length; ++i) {
         var marker = markers[i];
@@ -396,7 +400,7 @@
             },
             success: function(response) {
               console.log(response)
-
+              $("#mapinfo").show();
 
 
 

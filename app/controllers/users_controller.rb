@@ -14,9 +14,9 @@ class UsersController < ApplicationController
       marker.lng r.longitude
       marker.json({ :id => r.id })
       marker.picture({
-        :url => view_context.image_path("pin_2x.png"),
-        :width   => 86,
-        :height  => 102
+        :url => view_context.image_path("chito_pin.png"),
+        :width   => '50',
+        :height  => '60'
       })
 
 
