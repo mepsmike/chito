@@ -22,5 +22,7 @@
 //= require jquery.knob
 //= require scripts.js
 //= require_tree .
+//= require underscore
+//= require gmaps/google
 
 

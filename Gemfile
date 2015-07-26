@@ -41,7 +41,8 @@ gem 'faraday'
 gem 'yelp'
 gem 'rspec-rails'
 gem 'geocoder'
-
+gem 'gmaps4rails'
+gem 'underscore-rails'
 gem 'capistrano-rails', :group => :development
 gem 'capistrano-passenger', :group => :development
 gem 'mysql2'

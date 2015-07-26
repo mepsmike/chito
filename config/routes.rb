@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get '/restaurant' => 'pages#restaurant'
   get '/' => "pages#index"
   get '/user' => "users#show"
+  post '/users/mapinfo.js.erb' => "users#mapinfo"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
