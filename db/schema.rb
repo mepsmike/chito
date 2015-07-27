@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150724020303) do
+ActiveRecord::Schema.define(version: 20150727060753) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -26,12 +26,18 @@ ActiveRecord::Schema.define(version: 20150724020303) do
     t.datetime "updated_at",              null: false
   end
 
+  add_index "favorites", ["restaurant_id"], name: "index_favorites_on_restaurant_id", using: :btree
+  add_index "favorites", ["user_id"], name: "index_favorites_on_user_id", using: :btree
+
   create_table "mrt_restaurantships", force: :cascade do |t|
     t.integer  "mrt_id",        limit: 4
     t.integer  "restaurant_id", limit: 4
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
+
+  add_index "mrt_restaurantships", ["mrt_id"], name: "index_mrt_restaurantships_on_mrt_id", using: :btree
+  add_index "mrt_restaurantships", ["restaurant_id"], name: "index_mrt_restaurantships_on_restaurant_id", using: :btree
 
   create_table "mrts", force: :cascade do |t|
     t.string   "name",       limit: 255
