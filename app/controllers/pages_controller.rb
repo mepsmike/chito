@@ -8,6 +8,7 @@ class PagesController < ApplicationController
   end
 
   def restaurant
+    @category = Category.all
     @restaurant = Restaurant.all
   end
 
@@ -15,6 +16,11 @@ class PagesController < ApplicationController
 
   def mrt
     @mrt = Mrt.all
+    @mrt_line = Mrt.select("DISTINCT line")
+
+
   end
+
+
 
 end

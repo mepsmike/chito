@@ -14,14 +14,16 @@
 
                                   <div class="col-md-12">
                                     <ul class="nav nav-tabs">
-                                    <%@category.each do |c|%>
+                                      <%@mrt_line.each do |line| %>
+
                                         <li class="">
-                                            <a data-toggle="tab" href="#<%="#{c.name}"%>">
+                                            <a data-toggle="tab" href="#<%="#{line.line}"%>">
                                                 <i class="fa fa-heart"></i>
-                                                <%="#{c.name}"%>
+                                                    <%= line.line %>
                                             </a>
                                         </li>
-                                     <% end %>
+
+                                        <% end %>
                                     </ul>
                                   </div>
                                   <!-- /.container -->
@@ -30,28 +32,31 @@
                           <div class="panel-body">
 
                               <div class="tab-content">
-                              <%@category.each do |c|%>
-                                  <div id="<%="#{c.name}"%>" class="tab-pane">
+ <%@mrt_line.each do |line| %>
+                                  <div class="tab-pane" id="<%="#{line.line}"%>">
                                     <table class=" table table-responsive">
                                       <tr>
-                                        <th>餐廳</th>
+                                        <th>站名</th>
                                         <th>地址</th>
                                         <th>緯度</th>
                                         <th>經度</th>
                                       </tr>
-
-                                      <% c.restaurants.each do |r|%>
+                                      <%Mrt.where(line: "#{line.line}").each do |station| %>
                                       <tr>
-                                        <td><%= r.name %></td>
-                                        <td><%= r.address %></td>
-                                        <td><%= r.latitude%></td>
-                                        <td><%= r.longitude%></td>
+                                        <td> <%= station.name      %>   </td>
+                                        <td> <%= station.address   %>   </td>
+                                        <td> <%= station.latitude  %>   </td>
+                                        <td> <%= station.longitude %>   </td>
                                       </tr>
                                       <% end %>
                                     </table>
                                   </div>
-                                   <% end %>
+
+
+ <% end %>
                               </div>
+
+                            </div>
 
                           </div>
 
