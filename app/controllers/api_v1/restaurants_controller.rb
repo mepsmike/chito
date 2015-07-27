@@ -14,18 +14,6 @@ class ApiV1::RestaurantsController < ApiController
 
 		@restaurants = Restaurant.near([lat,long],30, :units=>:km).where(category_id:category).limit(5)
 
-		# long = params[:longitude]
-
-		# lat = params[:latitude]
-
-		# category = Category.find(params[:category])
-
-		# @mrt = Mrt.where(latitude:lat,longitude:long)
-
-		# @mrt = Mrt.find(1)
-
-		# @restaurants = @mrt.restaurants.where(category_id:2).limit(5).shuffle[0..4]
-
 	end
 
 	def visit #使用者可能去過的店，ios端點擊地圖上的餐廳時就post過來
