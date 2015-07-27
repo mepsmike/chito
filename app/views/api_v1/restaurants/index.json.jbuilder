@@ -5,6 +5,6 @@ json.name res.name
 json.tel res.tel
 json.address res.address
 json.latitude res.latitude
-json.longtitude res.longitude
+json.longitude res.longitude
 
 end
