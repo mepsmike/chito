@@ -23,7 +23,12 @@ Rails.application.routes.draw do
 
     #resources :restaurants
     post "/restaurants" => "restaurants#index"
-    get "/restaurants" => "restaurants#index"
+    post "/favorite_get" => "restaurants#favorite_get"
+    post "/visit" => "restaurants#visit"
+    post "/no_visit" => "restaurants#no_visit"
+    post "/favorite_like" => "restaurants#favorite_like"
+    post "/favorite_dislike" => "restaurants#favorite_dislike"
+    #get "/restaurants" => "restaurants#index"
     post "/login" => "auth#login"
     #post "/logout" => "auth#logout"
 

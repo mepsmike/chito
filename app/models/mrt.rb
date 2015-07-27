@@ -5,4 +5,5 @@ class Mrt < ActiveRecord::Base
   has_many :mrt_restaurantships
   has_many :restaurants, :through => :mrt_restaurantships
 
+
 end
