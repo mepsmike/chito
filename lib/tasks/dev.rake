@@ -11,7 +11,7 @@ namespace :dev do
         data["features"].each do |u|
 
 
-         mrt = Mrt.create!( :name => u["properties"]["站名"], :address => u["properties"]["地址"],:line=> u["properties"]["線名"],:latitude => u["properties"]["緯度"],:longitude => u["properties"]["經度"] )
+         mrt = Mrt.create!( :name => u["properties"]["站名"], :address => u["properties"]["地址"],:line=> u["properties"]["線名"],:line_no=> u["properties"]["路線編號"],:latitude => u["properties"]["緯度"],:longitude => u["properties"]["經度"] )
          puts "Create Mrt_station"
          end
     end

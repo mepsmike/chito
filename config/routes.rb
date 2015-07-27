@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get '/auth/failure', to: 'sessions#failure'
   delete '/auth/signout', to: 'sessions#destroy'
 
-  get '/list' => 'pages#list'
+  get '/mrt' => 'pages#mrt'
   get '/restaurant' => 'pages#restaurant'
   get '/' => "pages#index"
   get '/user' => "users#show"

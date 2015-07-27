@@ -3866,12 +3866,12 @@ ul.amounts li {
 }
 
 .tab-bg-info {
-    background: #1F1F1E;
+    background: #E55628;
 
     border-bottom: none;
 }
 .tab-bg-info.panel-heading .nav > li.active > a, .tab-bg-info.panel-heading .nav > li > a:hover{
-    color: #1F1F1E;
+    color: #E55628;
 }
 .tab-bg-info.panel-heading .nav{
     /*margin: -10px 15px -11px;*/
@@ -4948,6 +4948,10 @@ span.customSelect.changed {
 .nav-tabs > li > a {
   margin-right :0px;
   border :none;
+
+}
+.nav-tabs .nav a{
+    color:#E55628;
 }
 
 .panel-background{
