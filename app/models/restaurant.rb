@@ -1,7 +1,7 @@
 class Restaurant < ActiveRecord::Base
 
   # TODO: validations
-  validates_presence_of :address, :tel, :name, :latitude, :longitude
+  validates_presence_of :address, :tel, :name,:image_url
 
   belongs_to :category
 
