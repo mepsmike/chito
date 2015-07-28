@@ -70,7 +70,20 @@ class ApiV1::RestaurantsController < ApiController
 
 	end
 
-	def favorite_dislike #收藏清單的餐廳取消收藏
+def favorite_no_more #取消收藏
+
+		user_id = params[:user_id]
+
+		res_id = params[:res_id]
+
+		@favorite = Favorite.where(user_id:user_id,restaurant_id:res_id)
+
+		@favorite = @favorite.update(:status => "waiting")
+
+	end
+
+
+	def favorite_dislike #不想再看到的餐廳
 
 		user_id = params[:user_id]
 
