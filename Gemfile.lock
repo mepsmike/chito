@@ -43,6 +43,14 @@ GEM
       execjs
       json
     awesome_print (1.6.1)
+    awesome_rails_console (0.2.1)
+      awesome_print
+      hirb
+      hirb-unicode
+      pry-byebug
+      pry-rails
+      pry-stack_explorer
+      railties
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -117,6 +125,10 @@ GEM
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
     hashie (3.4.2)
+    hirb (0.7.3)
+    hirb-unicode (0.0.5)
+      hirb (~> 0.5)
+      unicode-display_width (~> 0.1.1)
     i18n (0.7.0)
     jbuilder (2.3.1)
       activesupport (>= 3.0.0, < 5)
@@ -183,6 +195,14 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-byebug (3.2.0)
+      byebug (~> 5.0)
+      pry (~> 0.10)
+    pry-rails (0.3.4)
+      pry (>= 0.9.10)
+    pry-stack_explorer (0.4.9.2)
+      binding_of_caller (>= 0.7)
+      pry (>= 0.9.11)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -276,6 +296,7 @@ GEM
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     underscore-rails (1.8.3)
+    unicode-display_width (0.1.1)
     warden (1.2.3)
       rack (>= 1.0)
     web-console (2.2.1)
@@ -293,7 +314,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on
-  awesome_print
+  awesome_rails_console
   bootstrap-sass (~> 3.3.5)
   byebug
   capistrano-passenger

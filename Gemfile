@@ -35,7 +35,7 @@ gem 'devise'
 gem 'kaminari'
 gem 'bootstrap-sass', '~> 3.3.5'
 
-gem 'awesome_print'
+gem 'awesome_rails_console'
 gem 'faker'
 gem 'faraday'
 gem 'yelp'
