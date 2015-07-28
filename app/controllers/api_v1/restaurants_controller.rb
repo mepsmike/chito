@@ -42,7 +42,7 @@ class ApiV1::RestaurantsController < ApiController
 
 		user_id = params[:user_id]
 
-		@user = User.where(id:user_id)
+		@user = User.find_by_id(user_id)
 
 		@visits = @user.favorites.where(status:"waiting")
 
@@ -52,7 +52,7 @@ class ApiV1::RestaurantsController < ApiController
 
 		user_id = params[:user_id]
 
-		@user = User.where(id:user_id)
+		@user = User.find_by_id(user_id)
 
 		@favorites = @user.favorites.where(status:"like")
 

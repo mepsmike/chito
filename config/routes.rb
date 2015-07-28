@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     post "/favorite_get" => "restaurants#favorite_get"
     post "/visit" => "restaurants#visit"
     post "/no_visit" => "restaurants#no_visit"
+    post "/visit_get" => "restaurants#visit_get"
     post "/favorite_like" => "restaurants#favorite_like"
     post "/favorite_dislike" => "restaurants#favorite_dislike"
     #get "/restaurants" => "restaurants#index"
