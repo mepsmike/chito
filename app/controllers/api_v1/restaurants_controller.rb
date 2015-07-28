@@ -24,6 +24,8 @@ class ApiV1::RestaurantsController < ApiController
 
 		@favorite = Favorite.create(:user_id=>user_id,:restaurant_id=>res_id)
 
+		render :json => { :message => "Ok"}
+
 	end
 
 	def no_visit #ios端使用者從去過的清單選擇沒有去過
@@ -32,9 +34,11 @@ class ApiV1::RestaurantsController < ApiController
 
 		res_id = params[:res_id]
 
-		@favorite = Favorite.where(user_id:user_id,restaurant_id:res_id)
+		@favorite = Favorite.find_by(user_id:user_id,restaurant_id:res_id)
 
 		@favorite = @favorite.destroy
+
+		render :json => { :message => "Ok"}
 
 	end
 
@@ -45,6 +49,7 @@ class ApiV1::RestaurantsController < ApiController
 		@user = User.find_by_id(user_id)
 
 		@visits = @user.favorites.where(status:"waiting")
+
 
 	end
 
@@ -64,21 +69,25 @@ class ApiV1::RestaurantsController < ApiController
 
 		res_id = params[:res_id]
 
-		@favorite = Favorite.where(user_id:user_id,restaurant_id:res_id)
+		@favorite = Favorite.find_by(user_id:user_id,restaurant_id:res_id)
 
 		@favorite = @favorite.update(:status => "like")
 
+		render :json => { :message => "Ok"}
+
 	end
 
-def favorite_no_more #取消收藏
+	def favorite_no_more #取消收藏
 
 		user_id = params[:user_id]
 
 		res_id = params[:res_id]
 
-		@favorite = Favorite.where(user_id:user_id,restaurant_id:res_id)
+		@favorite = Favorite.find_by(user_id:user_id,restaurant_id:res_id)
 
 		@favorite = @favorite.update(:status => "waiting")
+
+		render :json => { :message => "Ok"}
 
 	end
 
@@ -89,9 +98,11 @@ def favorite_no_more #取消收藏
 
 		res_id = params[:res_id]
 
-		@favorite = Favorite.where(user_id:user_id,restaurant_id:res_id)
+		@favorite = Favorite.find_by(user_id:user_id,restaurant_id:res_id)
 
 		@favorite = @favorite.update(:status => "dislike")
+
+		render :json => { :message => "Ok"}
 
 	end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150727114248) do
+ActiveRecord::Schema.define(version: 20150728091807) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -80,12 +80,12 @@ ActiveRecord::Schema.define(version: 20150727114248) do
     t.string   "email",                limit: 255
     t.string   "first_name",           limit: 255
     t.string   "last_name",            limit: 255
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.string   "fb_uid",               limit: 255
     t.string   "image",                limit: 255
     t.string   "name",                 limit: 255
-    t.string   "fb_token",             limit: 255
+    t.text     "fb_token",             limit: 65535
     t.datetime "fb_expires_at"
     t.string   "authentication_token", limit: 255
   end

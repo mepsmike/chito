@@ -1,4 +1,4 @@
-json.data @favorites do |res|
+json.data @visits do |res|
 
 json.id res.restaurant.id
 json.name res.restaurant.name

@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     post "/visit_get" => "restaurants#visit_get"
     post "/favorite_like" => "restaurants#favorite_like"
     post "/favorite_dislike" => "restaurants#favorite_dislike"
-    #get "/restaurants" => "restaurants#index"
+    post "/favorite_no_more" => "restaurants#favorite_no_more"
     post "/login" => "auth#login"
     #post "/logout" => "auth#logout"
 
