@@ -4959,4 +4959,6 @@ span.customSelect.changed {
     padding-top:150px;
 
 }
-
+.panel-body{
+    padding:10px 5%;
+}
