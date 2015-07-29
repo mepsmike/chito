@@ -51,7 +51,7 @@ failed_shops = []
 
                     shop = Restaurant.new
                     shop.name = s.name
-                    shop.image_url = s.image_url
+                    shop.image_url = s.try(:image_url)
                     shop.yelp_restaurant_id = s.id
                   if Restaurant.find_by_yelp_restaurant_id([s.id]).present? == false
                     if s.try(:phone).present?
@@ -78,6 +78,7 @@ failed_shops = []
 
                     if shop.save
                         successful_shops << shop
+
                     else
                         failed_shops << shop
                     end
@@ -123,7 +124,7 @@ failed_shops = []
 
                     shop = Restaurant.new
                     shop.name = s.name
-                    shop.image_url = s.image_url
+                    shop.image_url = s.try(:image_url)
                     shop.yelp_restaurant_id = s.id
                   if Restaurant.find_by_yelp_restaurant_id([s.id]).present? == false
                     if s.try(:phone) != nil
