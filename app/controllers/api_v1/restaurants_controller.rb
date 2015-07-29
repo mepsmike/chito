@@ -1,5 +1,7 @@
 class ApiV1::RestaurantsController < ApiController
 #skip_before_filter :verify_authenticity_token
+	before_action :authenticate,:except => [:index]
+
 	def index
 
 		long = params[:longitude] #121.6175001
@@ -48,7 +50,7 @@ class ApiV1::RestaurantsController < ApiController
 
 		@user = User.find_by_id(user_id)
 
-		@visits = @user.favorites.where(status:"waiting")
+		@visits = @user.favorites.where(status:"waiting").order("created_at DESC").limit(10)
 
 
 	end
@@ -105,5 +107,19 @@ class ApiV1::RestaurantsController < ApiController
 		render :json => { :message => "Ok"}
 
 	end
+
+	private
+
+	def authenticate
+    authenticate_token || render_unauthorized
+  end
+
+  def authenticate_token
+    User.find_by(authentication_token: params[:auth_token])
+  end
+
+  def render_unauthorized
+    render json: 'Bad credentials', status: 401
+  end
 
 end
