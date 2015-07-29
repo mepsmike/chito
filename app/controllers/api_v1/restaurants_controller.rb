@@ -1,6 +1,7 @@
 class ApiV1::RestaurantsController < ApiController
 #skip_before_filter :verify_authenticity_token
-	before_action :authenticate,:except => [:index]
+	before_action :authenticate, :except => [:index]
+	before_action :change_favorite_status, :except => [:index,:visit,:visit_get,:favorite_get]
 
 	def index
 
@@ -14,7 +15,7 @@ class ApiV1::RestaurantsController < ApiController
 
 		#@restaurants = @mrt[0].restaurants.where(category_id:category)#.shuffle[0..4]
 
-		@restaurants = Restaurant.near([lat,long],30, :units=>:km).where(category_id:category).limit(5)
+		@restaurants = Restaurant.near([lat,long],30, :units=>:km).where(category_id:category).limit(5)#.shuffle[0..4]
 
 	end
 
@@ -31,12 +32,6 @@ class ApiV1::RestaurantsController < ApiController
 	end
 
 	def no_visit #ios端使用者從去過的清單選擇沒有去過
-
-		user_id = params[:user_id]
-
-		res_id = params[:res_id]
-
-		@favorite = Favorite.find_by(user_id:user_id,restaurant_id:res_id)
 
 		@favorite = @favorite.destroy
 
@@ -55,7 +50,7 @@ class ApiV1::RestaurantsController < ApiController
 
 	end
 
-	def favorite_get
+	def favorite_get #點擊 "收藏清單"
 
 		user_id = params[:user_id]
 
@@ -67,12 +62,6 @@ class ApiV1::RestaurantsController < ApiController
 
 	def favorite_like #最近去過清單點選收藏
 
-		user_id = params[:user_id]
-
-		res_id = params[:res_id]
-
-		@favorite = Favorite.find_by(user_id:user_id,restaurant_id:res_id)
-
 		@favorite = @favorite.update(:status => "like")
 
 		render :json => { :message => "Ok"}
@@ -80,12 +69,6 @@ class ApiV1::RestaurantsController < ApiController
 	end
 
 	def favorite_no_more #取消收藏
-
-		user_id = params[:user_id]
-
-		res_id = params[:res_id]
-
-		@favorite = Favorite.find_by(user_id:user_id,restaurant_id:res_id)
 
 		@favorite = @favorite.update(:status => "waiting")
 
@@ -96,12 +79,6 @@ class ApiV1::RestaurantsController < ApiController
 
 	def favorite_dislike #不想再看到的餐廳
 
-		user_id = params[:user_id]
-
-		res_id = params[:res_id]
-
-		@favorite = Favorite.find_by(user_id:user_id,restaurant_id:res_id)
-
 		@favorite = @favorite.update(:status => "dislike")
 
 		render :json => { :message => "Ok"}
@@ -110,16 +87,32 @@ class ApiV1::RestaurantsController < ApiController
 
 	private
 
+	def change_favorite_status
+
+		user_id = params[:user_id]
+
+		res_id = params[:res_id]
+
+		@favorite = Favorite.find_by(user_id:user_id,restaurant_id:res_id)
+
+	end
+
 	def authenticate
+
     authenticate_token || render_unauthorized
+
   end
 
   def authenticate_token
-    User.find_by(authentication_token: params[:auth_token])
+
+    User.find_by(id:params[:user_id],authentication_token: params[:auth_token])
+
   end
 
   def render_unauthorized
+
     render json: 'Bad credentials', status: 401
+
   end
 
 end
