@@ -31,11 +31,11 @@ namespace :dev do
 
 
         # Restaurant.destroy_all
-        @mrt = Mrt.all
+        @mrt = Mrt.where(:id => [16, 17, 18, 19, 49, 56])
         @category = Category.all
 
-successful_shops = []
-failed_shops = []
+        successful_shops = []
+        failed_shops = []
 
         #coordinates = {latitude: 25.030009, longitude: 121.472389}
         @mrt.each do |m|
@@ -51,7 +51,7 @@ failed_shops = []
 
                     shop = Restaurant.new
                     shop.name = s.name
-                    shop.image_url = s.try(:image_url)
+
                     shop.yelp_restaurant_id = s.id
                   if Restaurant.find_by_yelp_restaurant_id([s.id]).present? == false
                     if s.try(:phone).present?
