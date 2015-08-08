@@ -53,37 +53,34 @@ namespace :dev do
                     shop.name = s.name
 
                     shop.yelp_restaurant_id = s.id
-                  if Restaurant.find_by_yelp_restaurant_id([s.id]).present? == false
-                    if s.try(:phone).present?
-                        shop.tel = s.phone.sub!"+886","0"
-                        shop.tel.insert(2,"-")
-                        shop.tel.insert(7,"-")
-                    end
+                    unless Restaurant.find_by_yelp_restaurant_id( s.id )
+                       if s.try(:phone).present?
+                           shop.tel = s.phone.sub!"+886","0"
+                           shop.tel.insert(2,"-")
+                           shop.tel.insert(7,"-")
+                       end
 
+                       shop.category_id = c.id
+                       shop.mrts << m
 
+                       locate = s.location.display_address
 
-                    shop.category_id = c.id
-                    shop.mrts << m
+                       if s.try(:location).present?
+                           add = locate
+                           add.slice!(2)
+                           shop.address = add.join(" ")
+                       end
 
+                       # shops = Restaurant.new(:name => s.name,:tel => s.phone, :category_id =>c, :mrt_id => m, :address => s.location.address.join(""))
 
-                    locate = s.location.display_address
+                       if shop.save
+                           successful_shops << shop
 
-                    if s.try(:location).present?
-                        add = locate
-                        add.slice!(2)
-                        shop.address = add.join(" ")
-                    end
-
-                    # shops = Restaurant.new(:name => s.name,:tel => s.phone, :category_id =>c, :mrt_id => m, :address => s.location.address.join(""))
-
-                    if shop.save
-                        successful_shops << shop
-
-                    else
-                        failed_shops << shop
-                    end
-                    puts "created Restaurant #{s.name} #{s.id}"
-                  end #if yelp_restaurant_id_present?
+                       else
+                           failed_shops << shop
+                       end
+                       puts "created Restaurant #{s.name} #{s.id}"
+                    end #if yelp_restaurant_id_present?
 
                 end
                 puts "CATEGORY DONE"

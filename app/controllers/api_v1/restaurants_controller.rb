@@ -1,6 +1,6 @@
 class ApiV1::RestaurantsController < ApiController
-#skip_before_filter :verify_authenticity_token
-	before_action :authenticate, :except => [:index]
+
+	before_action :require_login, :except => [:index]
 	before_action :change_favorite_status, :except => [:index,:visit,:visit_get,:favorite_get]
 
 	def index
@@ -20,12 +20,9 @@ class ApiV1::RestaurantsController < ApiController
 	end
 
 	def visit #使用者可能去過的店，ios端點擊地圖上的餐廳時就post過來
-
-		user_id = params[:user_id]
-
 		res_id = params[:res_id]
 
-		@favorite = Favorite.create(:user_id=>user_id,:restaurant_id=>res_id)
+		@favorite = Favorite.create( :user_id=> current_user.id ,:restaurant_id=>res_id)
 
 		render :json => { :message => "Ok"}
 
@@ -41,22 +38,13 @@ class ApiV1::RestaurantsController < ApiController
 
 	def visit_get #ios 點擊"最近去過"清單時
 
-		user_id = params[:user_id]
-
-		@user = User.find_by_id(user_id)
-
-		@visits = @user.favorites.where(status:"waiting").order("created_at DESC").limit(10)
-
+		@visits = current_user.favorites.where(status:"waiting").order("created_at DESC").limit(10)
 
 	end
 
 	def favorite_get #點擊 "收藏清單"
 
-		user_id = params[:user_id]
-
-		@user = User.find_by_id(user_id)
-
-		@favorites = @user.favorites.where(status:"like")
+		@favorites = current_user.favorites.where(status:"like")
 
 	end
 
@@ -89,30 +77,10 @@ class ApiV1::RestaurantsController < ApiController
 
 	def change_favorite_status
 
-		user_id = params[:user_id]
-
 		res_id = params[:res_id]
 
-		@favorite = Favorite.find_by(user_id:user_id,restaurant_id:res_id)
+		@favorite = Favorite.find_by(user_id: current_user.id, restaurant_id:res_id)
 
 	end
-
-	def authenticate
-
-    authenticate_token || render_unauthorized
-
-  end
-
-  def authenticate_token
-
-    User.find_by(id:params[:user_id],authentication_token: params[:auth_token])
-
-  end
-
-  def render_unauthorized
-
-    render json: 'Bad credentials', status: 401
-
-  end
 
 end
