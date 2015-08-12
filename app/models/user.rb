@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 
 
   # TODO: validations
-  validates_presence_of :fb_token
+  validates_presence_of :fb_token, :email
   before_create :generate_authentication_token
 
   def generate_authentication_token
@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 
   def self.get_fb_data(access_token)
     conn = Faraday.new(:url => 'https://graph.facebook.com')
-    res = conn.get '/v2.3/me', { :access_token => access_token }
+    res = conn.get '/v2.4/me?fields=email', { :access_token => access_token }
 
     if res.status == 200
       JSON.parse( res.body )

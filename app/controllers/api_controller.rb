@@ -1,22 +1,26 @@
 class ApiController < ActionController::Base
 
-  before_action :authenticate_user_from_token!
+  helper_method :current_user
+  before_action :check_token
 
-  def authenticate_user_from_token!
+  protected
 
-    if params[:auth_token].present?
-      user = User.find_by_authentication_token( params[:auth_token] )
-      sign_in(user, store: false) if user
+  def check_token
+    if params[:auth_token]
+      @current_user = User.find_by_authentication_token(params[:auth_token])
+    else
+      @current_user = nil
     end
-
   end
 
-  def add_to_favorite
-    @restaurant = Restaurant.find(params[:id])
-    @user = current_user
-    @favorite = Favorite.new
-    @favorite = @user.favorite.new(params_favorite)
-    @favorite.save
+  def require_login
+    unless current_user
+      render :json => { :message => "Requied login"}, :status => 401
+    end
+  end
+
+  def current_user
+    @current_user
   end
 
   private

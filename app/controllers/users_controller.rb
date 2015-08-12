@@ -1,13 +1,9 @@
 class UsersController < ApplicationController
 
   def show
-    # @user = current_user
-    # @restaurant = Restaurant.first(20)
-    # @mrt = Mrt.all
-    # @favorite = @user.restaurants
-
-
-    @res =Restaurant.all
+    #@user = current_user
+    @res = current_user.favorites.where(status:"like")
+    #@res =Restaurant.all
     @hash = Gmaps4rails.build_markers(@res) do |r, marker|
       #address=Geocoder.coordinates(r.address)
       marker.lat r.latitude

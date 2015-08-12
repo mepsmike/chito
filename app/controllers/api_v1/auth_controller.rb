@@ -6,11 +6,12 @@ class ApiV1::AuthController < ApiController
 
     if params[:access_token]
       fb_data = User.get_fb_data( params[:access_token] )
+
       if fb_data
         auth_hash = OmniAuth::AuthHash.new({
           uid: fb_data["id"],
           info: {
-            email: fb_data["email"]
+            email: fb_data["email"],
           },
           credentials: {
             token: params[:access_token],
