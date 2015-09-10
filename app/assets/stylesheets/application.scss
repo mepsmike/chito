@@ -6,4 +6,18 @@
 @import "style";
 @import "style-responsive";
 @import "http://fonts.googleapis.com/css?family=Noto-Sans-CJK-TC";
-@import "map"
+@import "map";
+
+.row{
+  .wow  {
+    h2{
+      padding: 18% 5px;
+      }
+    .img-responsive{
+      height:500px;
+      width:auto;
+    }
+  }
+}
+
+
