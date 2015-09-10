@@ -15,7 +15,7 @@ class ApiController < ActionController::Base
 
   def require_login
     unless current_user
-      render :json => { :message => "Requied login"}, :status => 401
+      render :json => { :message => "Required login"}, :status => 401
     end
   end
 
