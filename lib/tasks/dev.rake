@@ -167,7 +167,7 @@ namespace :dev do
 
 
         # Restaurant.destroy_all
-        @mrt = Mrt.where(:id => [1, 2])
+        @mrt = Mrt.where(:id => 71..96)
         @category = Category.all
 
         successful_shops = []
