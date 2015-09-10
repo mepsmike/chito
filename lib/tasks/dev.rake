@@ -30,8 +30,8 @@ namespace :dev do
     task :get_yelp => :environment do
 
 
-        # Restaurant.destroy_all
-        @mrt = Mrt.where(:id => [16, 17, 18, 19, 49, 56])
+        Restaurant.destroy_all
+        @mrt = Mrt.where(:id => [1,2,16, 17, 18, 19, 49, 56])
         @category = Category.all
 
         successful_shops = []
@@ -80,12 +80,13 @@ namespace :dev do
                            failed_shops << shop
                        end
                        puts "created Restaurant #{s.name} #{s.id}"
+                       sleep(1)
                     end #if yelp_restaurant_id_present?
 
                 end
-                puts "CATEGORY DONE"
+                puts "CATEGORY: #{@category} DONE"
             end
-            puts "MRT DONE"
+            puts "MRT: #{@mrt} DONE"
         end
 
         puts "Totoal success: #{successful_shops.count}"
@@ -215,6 +216,7 @@ namespace :dev do
                            failed_shops << shop
                        end
                        puts "created Restaurant #{s.name} #{s.id}"
+                       sleep(1)
                     end #if yelp_restaurant_id_present?
 
                 end
