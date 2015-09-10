@@ -17,10 +17,10 @@ namespace :dev do
     end
 
     task :post => :environment do
-        Post.delete_all
+        #Post.delete_all
         puts"creating fake POST data"
 
-        50.times do |p|
+        3.times do |p|
             p = Post.create(:name => Faker::Name.name, :email=>Faker::Internet.free_email, :title=> Faker::Team.name ,:content=>Faker::Lorem.paragraph(2))
             p.save
             puts"#{p.name} created"
@@ -231,7 +231,7 @@ namespace :dev do
           puts "----\n"
         end
 
-    end  #get_yelp
+    end  #get_yelp_hp
 
     task :build => ["tmp:clear", "db:drop", "db:create", "db:migrate"]
     task :rebuild => [ "dev:build", "db:seed" ]
