@@ -36,6 +36,7 @@
                                   <div class="tab-pane" id="<%="#{line.line}"%>">
                                     <table class=" table table-responsive">
                                       <tr>
+                                        <th>ID</th>
                                         <th>站名</th>
                                         <th>地址</th>
                                         <th>緯度</th>
@@ -43,6 +44,7 @@
                                       </tr>
                                       <%Mrt.where(line: "#{line.line}").each do |station| %>
                                       <tr>
+                                        <td> <%= station.id %>          </td>
                                         <td> <%= station.name      %>   </td>
                                         <td> <%= station.address   %>   </td>
                                         <td> <%= station.latitude  %>   </td>
